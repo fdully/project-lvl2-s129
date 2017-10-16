@@ -18,11 +18,11 @@ export default (obj1, obj2) => {
     }
     if (_.has(obj1, key)) {
       return [...acc, {
-        type: 'removed', name: key, oldValue: obj1[key], newValue: '',
+        type: 'removed', name: key, oldValue: obj1[key], newValue: null,
       }];
     }
     return [...acc, {
-      type: 'added', name: key, oldValue: '', newValue: obj2[key],
+      type: 'added', name: key, oldValue: null, newValue: obj2[key],
     }];
   }, []);
 };
