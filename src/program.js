@@ -7,9 +7,8 @@ program
   .option('-f, --format [type]', 'Output format')
   .arguments('<firstConfig> <secondConfig>')
   .action((firstConfig, secondConfig) =>
-    console.log(generateDifference(firstConfig, secondConfig)));
+    console.log(generateDifference(firstConfig, secondConfig, program.format)));
 
 program.parse(process.argv);
-if (program.format) console.log(program.format);
 
 export default program;

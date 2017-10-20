@@ -46,6 +46,16 @@ const jsonNest = `
     }
 }`;
 
+const plainFormat = `
+Property 'common.setting2' was removed
+Property 'common.setting6' was removed
+Property 'common.setting4' was added with value: blah blah
+Property 'common.setting5' was added with complex value
+Property 'group1.baz' was updated. From 'bas' to 'bars'
+Property 'group2' was removed
+Property 'group3' was added with complex value
+`;
+
 test('diff json', () => {
   expect(diff('./__tests__/fixtures/before.json', './__tests__/fixtures/after.json')).toBe(jsonDiff1);
 });
@@ -68,6 +78,10 @@ test('diff nest ini', () => {
 
 test('diff nest yml', () => {
   expect(diff('./__tests__/fixtures/before_nest.yml', './__tests__/fixtures/after_nest.yml')).toBe(jsonNest);
+});
+
+test('diff plain format', () => {
+  expect(diff('./__tests__/fixtures/before_nest.yml', './__tests__/fixtures/after_nest.yml', 'plain')).toBe(plainFormat);
 });
 // test('log', () => {
 //   console.log(diff('./__tests__/fixtures/before.ini', './__tests__/fixtures/after.ini'));
