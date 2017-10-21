@@ -1,7 +1,7 @@
 {
   "name": "gendiff-test-package",
-  "version": "1.3.3",
-  "description": "cli diff",
+  "version": "1.3.4",
+  "description": "cl4 diff",
   "main": "dist/index.js",
   "bin": {
     "gendiff": "dist/bin/gendiff.js"

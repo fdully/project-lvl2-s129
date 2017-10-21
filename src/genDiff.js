@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import compare from './compare';
-import getFormat from './formats/index';
+import getFormat from './formats';
 import parse from './parse';
 
 export default (firstConfig, secondConfig, formatType = 'initial') => {

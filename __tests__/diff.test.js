@@ -56,6 +56,103 @@ Property 'group2' was removed
 Property 'group3' was added with complex value
 `;
 
+const jsonFormat = `
+{
+  "common": {
+    "type": "child",
+    "oldValue": {
+      "setting1": "Value 1",
+      "setting2": "200",
+      "setting3": true,
+      "setting6": {
+        "key": "value"
+      }
+    },
+    "newValue": {
+      "setting1": "Value 1",
+      "setting3": true,
+      "setting4": "blah blah",
+      "setting5": {
+        "key5": "value5"
+      }
+    },
+    "children": {
+      "setting1": {
+        "type": "same",
+        "oldValue": "Value 1",
+        "newValue": "Value 1"
+      },
+      "setting2": {
+        "type": "removed",
+        "oldValue": "200",
+        "newValue": null
+      },
+      "setting3": {
+        "type": "same",
+        "oldValue": true,
+        "newValue": true
+      },
+      "setting6": {
+        "type": "removed",
+        "oldValue": {
+          "key": "value"
+        },
+        "newValue": null
+      },
+      "setting4": {
+        "type": "new",
+        "oldValue": null,
+        "newValue": "blah blah"
+      },
+      "setting5": {
+        "type": "new",
+        "oldValue": null,
+        "newValue": {
+          "key5": "value5"
+        }
+      }
+    }
+  },
+  "group1": {
+    "type": "child",
+    "oldValue": {
+      "baz": "bas",
+      "foo": "bar"
+    },
+    "newValue": {
+      "foo": "bar",
+      "baz": "bars"
+    },
+    "children": {
+      "baz": {
+        "type": "changed",
+        "oldValue": "bas",
+        "newValue": "bars"
+      },
+      "foo": {
+        "type": "same",
+        "oldValue": "bar",
+        "newValue": "bar"
+      }
+    }
+  },
+  "group2": {
+    "type": "removed",
+    "oldValue": {
+      "abc": "12345"
+    },
+    "newValue": null
+  },
+  "group3": {
+    "type": "new",
+    "oldValue": null,
+    "newValue": {
+      "fee": "100500"
+    }
+  }
+}
+`;
+
 test('diff json', () => {
   expect(diff('./__tests__/fixtures/before.json', './__tests__/fixtures/after.json')).toBe(jsonDiff1);
 });
@@ -83,6 +180,7 @@ test('diff nest yml', () => {
 test('diff plain format', () => {
   expect(diff('./__tests__/fixtures/before_nest.yml', './__tests__/fixtures/after_nest.yml', 'plain')).toBe(plainFormat);
 });
-// test('log', () => {
-//   console.log(diff('./__tests__/fixtures/before.ini', './__tests__/fixtures/after.ini'));
-// });
+
+test('diff json format', () => {
+  expect(diff('./__tests__/fixtures/before_nest.json', './__tests__/fixtures/after_nest.json', 'json')).toBe(jsonFormat);
+});
